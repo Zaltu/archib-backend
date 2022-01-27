@@ -1,0 +1,88 @@
+{
+    "tables": {
+        "audio": "audio",
+        "books": "books",
+        "games": "games",
+        "imageset": "imageset",
+        "software": "software",
+        "videos": "videos"
+    },
+    "audio": {
+        "id": {"field":"uid", "type": "is"},
+        "audiotype": {"field":"audiotype", "type":"is"},
+        "artist": {"field":"artist", "type":"isci"},
+        "name": {"field":"displayname", "type":"contains"},
+        "adult": {"field":"adult", "type":"is"},
+        "publisher": {"field":"publisher", "type":"isci"},
+        "platformid": {"field":"id", "type":"isci"},
+        "drm": {"field":"drm", "type":"isci"},
+        "link": {"field":"url", "type":"is"},
+        "path": {"field":"filepath", "type":"is"}
+    },
+    "books": {
+        "id": {"field":"uid", "type": "is"},
+        "booktype": {"field":"booktype", "type":"is"},
+        "author": {"field":"author", "type":"isci"},
+        "name": {"field":"displayname", "type":"contains"},
+        "genres": {"field":"genre", "type":"multitext"},
+        "year": {"field":"year", "type":"is"},
+        "adult": {"field":"adult", "type":"is"},
+        "illustrator": {"field":"illus", "type":"isci"},
+        "platformid": {"field":"id", "type":"isci"},
+        "path": {"field":"filepath", "type":"is"}
+    },
+    "games": {
+        "id": {"field":"uid", "type": "is"},
+        "developer": {"field":"developer", "type":"isci"},
+        "name": {"field":"displayname", "type":"contains"},
+        "genres": {"field":"genre", "type":"multitext"},
+        "year": {"field":"year", "type":"is"},
+        "adult": {"field":"adult", "type":"is"},
+        "publisher": {"field":"publisher", "type":"isci"},
+        "dlc": {"field":"dlc", "type":"multitext"},
+        "platformid": {"field":"id", "type":"isci"},
+        "drm": {"field":"drm", "type":"isci"},
+        "link": {"field":"url", "type":"is"},
+        "path": {"field":"filepath", "type":"is"}
+    },
+    "imageset": {
+        "id": {"field":"uid", "type": "is"},
+        "imagetype": {"field":"imagetype", "type": "is"},
+        "description": {"field":"subject", "type":"contains"},
+        "name": {"field":"displayname", "type":"contains"},
+        "filetype": {"field":"filetype", "type":"multitext"},
+        "adult": {"field":"adult", "type":"is"},
+        "path": {"field":"filepath", "type":"is"}
+    },
+    "software": {
+        "id": {"field":"uid", "type": "is"},
+        "developer": {"field":"developer", "type":"isci"},
+        "name": {"field":"displayname", "type":"contains"},
+        "softwaretype": {"field":"softtype", "type":"is"},
+        "version": {"field":"version", "type":"is"},
+        "outputtype": {"field":"format", "type":"multitext"},
+        "drm": {"field":"drm", "type":"isci"},
+        "link": {"field":"url", "type":"is"},
+        "path": {"field":"filepath", "type":"is"}
+    },
+    "videos": {
+        "id": {"field":"uid", "type": "is"},
+        "videostyle": {"field":"videostyle", "type":"multitext"},
+        "videotype": {"field":"videotype", "type":"multitext"},
+        "studio": {"field":"studio", "type":"isci"},
+        "name": {"field":"displayname", "type":"contains"},
+        "genres": {"field":"genre", "type":"multitext"},
+        "year": {"field":"year", "type":"is"},
+        "adult": {"field":"adult", "type":"is"},
+        "vr": {"field":"vr", "type":"is"},
+        "platformid": {"field":"id", "type":"isci"},
+        "link": {"field":"url", "type":"is"},
+        "path": {"field":"filepath", "type":"is"}
+    },
+    "querysyntax": {
+        "contains": "{key} ILIKE %({key})s",
+        "isci": "{key} ILIKE %({key})s",
+        "is": "{key} = %({key})s",
+        "multitext": "%({key})s <@ {key}"
+    }
+}
