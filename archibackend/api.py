@@ -44,12 +44,12 @@ class Database:
             cur.close()
         except Exception as e:
             print(e)
-        
+
         return value
 
 
 class Archibase(Database):
-    def select(self, table, fields):
+    def select(self, table, fields, returnfields="*"):
         """
         Prep the SELECT command on a given table for a certain set of provided filters.
         """
@@ -58,7 +58,12 @@ class Archibase(Database):
         if not realtable:
             raise TableNotFoundException(f"No table {table} found...")
         realfields, fieldtypes, skipped = self._map_field_requests(realtable, fields)
-        realcommand = self._build_select_command(realtable, realfields, fieldtypes)
+        realcommand = self._build_select_command(
+            realtable,
+            realfields,
+            fieldtypes,
+            ','.join(returnfields) if returnfields else '*'
+        )
         return self._run_command(realcommand, realfields)
 
 
@@ -79,8 +84,8 @@ class Archibase(Database):
             fieldtypes[newkey] = ARCHIVE_CONFIG[table][key]["type"]
         return newdict, fieldtypes, skipped
     
-    def _build_select_command(self, table, fields, searchtypes):
-        base = f"SELECT * FROM {table} WHERE "
+    def _build_select_command(self, table, fields, searchtypes, returnfields):
+        base = f"SELECT {returnfields} FROM {table} WHERE "
         extras = []
         for key, value in fields.items():
             extras.append(ARCHIVE_CONFIG["querysyntax"][searchtypes[key]].format(key=key))
@@ -101,3 +106,9 @@ class TableNotFoundException(Exception):
     """
     The requested DB table does not match anything on record.
     """
+
+if __name__ == "__main__":
+    db = Archibase()
+    result = db.select("games", {"name":""})
+    db.close()
+    pp(result)

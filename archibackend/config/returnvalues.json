@@ -1,0 +1,32 @@
+{
+    "audio":[
+        "uid",
+        "displayname"
+    ],
+    "book":[
+        "uid",
+        "displayname"
+    ],
+    "games":[
+        "uid",
+        "displayname",
+        "genre",
+        "developer",
+        "publisher",
+        "year",
+        "url",
+        "adult"
+    ],
+    "imageset":[
+        "uid",
+        "displayname"
+    ],
+    "software":[
+        "uid",
+        "displayname"
+    ],
+    "video":[
+        "uid",
+        "displayname"
+    ]
+}
