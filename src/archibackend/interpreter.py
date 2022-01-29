@@ -56,4 +56,4 @@ def _callApi(data):
     lineitems = []
     for value in result:
         lineitems.append(dict(zip(RETURNFIELD_CONFIG[table], value)))
-    return json.dumps(lineitems)
+    return lineitems

@@ -1,6 +1,7 @@
 import os
 from pprint import pprint as pp
 from unittest import result
+from pyrsistent import field
 import toml
 import json
 import psycopg2 as PSQL
@@ -85,11 +86,14 @@ class Archibase(Database):
         return newdict, fieldtypes, skipped
     
     def _build_select_command(self, table, fields, searchtypes, returnfields):
-        base = f"SELECT {returnfields} FROM {table} WHERE "
-        extras = []
-        for key, value in fields.items():
-            extras.append(ARCHIVE_CONFIG["querysyntax"][searchtypes[key]].format(key=key))
-        base += " AND ".join(extras) + ";"
+        base = f"SELECT {returnfields} FROM {table}"
+        if fields:
+            base += " WHERE "
+            extras = []
+            for key, value in fields.items():
+                extras.append(ARCHIVE_CONFIG["querysyntax"][searchtypes[key]].format(key=key))
+            base += " AND ".join(extras)
+        base += ";"
 
         # Handle "contains" logic. Due to python string formatting
         # shenanigans, we need to add the PSQL "%" regex characters to the vars
@@ -109,6 +113,6 @@ class TableNotFoundException(Exception):
 
 if __name__ == "__main__":
     db = Archibase()
-    result = db.select("games", {"name":""})
+    result = db.select("games", {})
     db.close()
     pp(result)
