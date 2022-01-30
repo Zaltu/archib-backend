@@ -20,10 +20,7 @@ class Database:
     def __init__(self):
         self.conn = PSQL.connect(
             database=CONFIG["database"],
-            user=SECRETS["user"],
-            password=SECRETS["password"],
-            host=CONFIG["host"],
-            port=CONFIG["port"]
+            user=SECRETS["user"]
         )
     
     def getVersion(self):
@@ -113,6 +110,6 @@ class TableNotFoundException(Exception):
 
 if __name__ == "__main__":
     db = Archibase()
-    result = db.select("games", {})
+    result = db.select("games", {"genres": ["Pixel"]})
     db.close()
     pp(result)
