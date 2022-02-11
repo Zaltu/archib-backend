@@ -38,21 +38,35 @@ def _structure(data):
     return data.json
 
 def _inchect(data):
+    """
+    Basic check for SQL injection. Should be replaced by best practices.
+    Data loop is a bit convoluted, but checks for any structure allowing:
+    {
+        "key":, "value",
+        "key": ["Value1", "Value2", "Value3"]
+    }
+    Aborts with 400 if special characters are found or if the structure is unintended.
+
+    :param dict data: data dict received from the wild
+    """
     try:
         for key, value in data.items():
             assert(re.match(INJECT_REGEX, key))
-            assert(re.match(INJECT_REGEX, value))
+            if isinstance(value, str):
+                assert(re.match(INJECT_REGEX, value))
+            else:
+                for listentry in value:
+                    assert(re.match(INJECT_REGEX, listentry))
     except AssertionError:  # String contains special characters
         abort(400)
     except TypeError:
-        abort(400)  # value is not a string...
+        abort(400)  # value is not an expected type...
 
 def _callApi(data):
     db = archibackend.api.Archibase()
     table = data.pop("table")
     result = db.select(table, data, RETURNFIELD_CONFIG[table])
     db.close()
-    print(result)
     lineitems = []
     for value in result:
         lineitems.append(dict(zip(RETURNFIELD_CONFIG[table], value)))
