@@ -11,10 +11,12 @@
         "uid",
         "displayname",
         "genre",
-        "developer",
         "publisher",
         "year",
+        "platform",
         "url",
+        "filepath",
+        "platform",
         "adult"
     ],
     "imageset":[
