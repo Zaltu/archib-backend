@@ -1,7 +1,5 @@
 import os
 from pprint import pprint as pp
-from unittest import result
-from pyrsistent import field
 import toml
 import json
 import psycopg2 as PSQL
