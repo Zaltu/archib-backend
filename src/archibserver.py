@@ -4,7 +4,7 @@ from flask_cors import CORS
 from archibackend.interpreter import interpret
 
 FLASK_PORT = 44361
-FLASK_HOST = "127.0.0.1"
+FLASK_HOST = "0.0.0.0"
 
 FLASK_APP = Flask(__name__)
 CORS(FLASK_APP)
