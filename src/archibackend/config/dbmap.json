@@ -43,7 +43,8 @@
         "platformid": {"field":"id", "type":"isci"},
         "drm": {"field":"drm", "type":"isci"},
         "link": {"field":"url", "type":"is"},
-        "path": {"field":"filepath", "type":"is"}
+        "path": {"field":"filepath", "type":"is"},
+        "platform": {"field":"platform", "type":"isci"}
     },
     "imageset": {
         "id": {"field":"uid", "type": "is"},
