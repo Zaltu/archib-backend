@@ -12,6 +12,8 @@ import archibackend.api
 
 INJECT_REGEX = "^[a-zA-Z0-9 ]+$"
 
+VALID_PY_TYPES = [str, int, list]
+
 with open(os.path.join(os.path.dirname(__file__), "config", "returnvalues.json")) as infile:
     RETURNFIELD_CONFIG = json.load(infile)
 
@@ -45,22 +47,31 @@ def _inchect(data):
         "key":, "value",
         "key": ["Value1", "Value2", "Value3"]
     }
-    Aborts with 400 if special characters are found or if the structure is unintended.
+    Aborts with 405 if the structure is unintended.
+    Aborts with 501 if special characters are found
+
+    This should be recursive, but the intended structure is simple, so...
 
     :param dict data: data dict received from the wild
     """
     try:
         for key, value in data.items():
             assert(re.match(INJECT_REGEX, key))
+            if type(value) not in VALID_PY_TYPES:
+                raise TypeError()
             if isinstance(value, str):
                 assert(re.match(INJECT_REGEX, value))
-            else:
+            try:
                 for listentry in value:
+                    if type(value not in VALID_PY_TYPES):
+                        raise TypeError()
                     assert(re.match(INJECT_REGEX, listentry))
+            except TypeError:
+                pass  # Not iterable, no need to care.
     except AssertionError:  # String contains special characters
-        abort(400)
-    except TypeError:
-        abort(400)  # value is not an expected type...
+        abort(501)
+    except TypeError:  # Value is not an expected type...
+        abort(405)
 
 def _callApi(data):
     db = archibackend.api.Archibase()
