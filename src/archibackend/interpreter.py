@@ -12,7 +12,7 @@ import archibackend.api
 
 INJECT_REGEX = "^[a-zA-Z0-9 ]+$"
 
-VALID_PY_TYPES = [str, int, list]
+VALID_PY_TYPES = [str, int, list, bool]
 
 with open(os.path.join(os.path.dirname(__file__), "config", "returnvalues.json")) as infile:
     RETURNFIELD_CONFIG = json.load(infile)
