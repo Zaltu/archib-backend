@@ -68,8 +68,8 @@
     },
     "videos": {
         "id": {"field":"uid", "type": "is"},
-        "videostyle": {"field":"videostyle", "type":"multitext"},
-        "videotype": {"field":"videotype", "type":"multitext"},
+        "videostyle": {"field":"videostyle", "type":"is"},
+        "videotype": {"field":"videotype", "type":"is"},
         "studio": {"field":"studio", "type":"isci"},
         "name": {"field":"displayname", "type":"contains"},
         "genres": {"field":"genre", "type":"multitext"},

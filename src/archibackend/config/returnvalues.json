@@ -3,7 +3,7 @@
         "uid",
         "displayname"
     ],
-    "book":[
+    "books":[
         "uid",
         "displayname"
     ],
@@ -26,7 +26,7 @@
         "uid",
         "displayname"
     ],
-    "video":[
+    "videos":[
         "uid",
         "displayname"
     ]
