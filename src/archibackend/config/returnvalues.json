@@ -1,11 +1,24 @@
 {
     "audio":[
         "uid",
-        "displayname"
+        "displayname",
+        "filepath",
+        "url",
+        "artist",
+        "audiotype",
+        "publisher",
+        "adult"
     ],
     "books":[
         "uid",
-        "displayname"
+        "displayname",
+        "author",
+        "illus",
+        "genre",
+        "year",
+        "filepath",
+        "booktype",
+        "adult"
     ],
     "games":[
         "uid",
@@ -20,14 +33,33 @@
     ],
     "imageset":[
         "uid",
-        "displayname"
+        "displayname",
+        "imagetype",
+        "artist",
+        "adult",
+        "filepath"
     ],
     "software":[
         "uid",
-        "displayname"
+        "displayname",
+        "developer",
+        "version",
+        "format",
+        "softtype",
+        "filepath",
+        "url"
     ],
     "videos":[
         "uid",
-        "displayname"
+        "displayname",
+        "videostyle",
+        "videotype",
+        "studio",
+        "genre",
+        "year",
+        "vr",
+        "adult",
+        "url",
+        "filepath"
     ]
 }
