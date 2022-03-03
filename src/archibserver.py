@@ -17,7 +17,6 @@ def base():
 
 @FLASK_APP.route('/search', methods=['POST'])
 def search():
-    pp(request.data)
     response = jsonify(interpret(request))
     return response
 

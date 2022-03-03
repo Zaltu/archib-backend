@@ -34,7 +34,7 @@ class Database:
     def _run_command(self, command, params=None):
         try:
             cur = self.conn.cursor()
-            print(cur.mogrify(command, params))
+            #print(cur.mogrify(command, params))
             cur.execute(command, params)
             value = cur.fetchall()
             cur.close()
