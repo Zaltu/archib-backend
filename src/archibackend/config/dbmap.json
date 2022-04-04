@@ -49,7 +49,7 @@
     "imageset": {
         "id": {"field":"uid", "type": "is"},
         "imagetype": {"field":"imagetype", "type": "is"},
-        "description": {"field":"subject", "type":"contains"},
+        "artist": {"field":"artist", "type":"is"},
         "name": {"field":"displayname", "type":"contains"},
         "filetype": {"field":"filetype", "type":"multitext"},
         "adult": {"field":"adult", "type":"is"},
