@@ -18,11 +18,13 @@ class Database:
     def __init__(self):
         self.conn = PSQL.connect(
             database=CONFIG["database"],
-            user=SECRETS["user"]
+            user=SECRETS["user"],
+            host=SECRETS["host"],
+            port=SECRETS["port"]
         )
-    
+
     def getVersion(self):
-        COMMAND = 'SELECT version()'
+        COMMAND = 'SELECT version();'
         return self._run_command(COMMAND)
     
     
@@ -75,9 +77,14 @@ class Archibase(Database):
             newkey = ARCHIVE_CONFIG[table].get(key, {}).get("field", None)
             if not newkey:
                 skipped.append(key)
+                pp(f"Skipping {key}")
                 continue
             newdict[newkey] = value
             fieldtypes[newkey] = ARCHIVE_CONFIG[table][key]["type"]
+            # Temp
+            if fieldtypes[newkey] == "multitext":
+                # Intentionally vague
+                raise NotImplementedError
         return newdict, fieldtypes, skipped
     
     def _build_select_command(self, table, fields, searchtypes, returnfields):
@@ -108,6 +115,6 @@ class TableNotFoundException(Exception):
 
 if __name__ == "__main__":
     db = Archibase()
-    result = db.select("games", {"genres": ["Pixel"]})
+    result = db.select("audio", {"audiotype": "Music"})
     db.close()
     pp(result)
