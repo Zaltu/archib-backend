@@ -14,7 +14,7 @@
         "name": {"field":"display_name", "type":"contains"},
         "adult": {"field":"adult", "type":"is"},
         "publisher": {"field":"publisher", "type":"isci"},
-        "platformid": {"field":"platform_id", "type":"isci"},
+        "platformid": {"field":"product_id", "type":"isci"},
         "drm": {"field":"storefront", "type":"isci"},
         "link": {"field":"url", "type":"is"},
         "path": {"field":"file_path", "type":"is"}
@@ -28,7 +28,7 @@
         "year": {"field":"year", "type":"is"},
         "adult": {"field":"adult", "type":"is"},
         "illustrator": {"field":"illus", "type":"isci"},
-        "platformid": {"field":"platform_id", "type":"isci"},
+        "platformid": {"field":"product_id", "type":"isci"},
         "path": {"field":"file_path", "type":"is"}
     },
     "games": {
@@ -40,7 +40,7 @@
         "adult": {"field":"adult", "type":"is"},
         "publisher": {"field":"publisher", "type":"isci"},
         "dlc": {"field":"dlc", "type":"multitext"},
-        "platformid": {"field":"platform_id", "type":"isci"},
+        "platformid": {"field":"product_id", "type":"isci"},
         "storefront": {"field":"storefront", "type":"isci"},
         "drm": {"field":"drm", "type":"multitext"},
         "link": {"field":"url", "type":"is"},
@@ -77,7 +77,7 @@
         "year": {"field":"year", "type":"is"},
         "adult": {"field":"adult", "type":"is"},
         "vr": {"field":"vr", "type":"is"},
-        "platformid": {"field":"platform_id", "type":"isci"},
+        "platformid": {"field":"product_id", "type":"isci"},
         "link": {"field":"url", "type":"is"},
         "path": {"field":"file_path", "type":"is"}
     },
